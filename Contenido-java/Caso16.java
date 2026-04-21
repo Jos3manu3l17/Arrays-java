@@ -10,6 +10,8 @@ public class Caso16 {
 
     System.out.println("\n===== Inicio del sistema de estadísticas de Circulación de Textos=====");
 
+    int[] biblio = new int[24]; 
+
 
 
   }
