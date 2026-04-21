@@ -30,7 +30,7 @@ public class Caso16 {
               bajaInfluencia = true;
               
             }
-          }x
+          }
 
           if (!bajaInfluencia) {
             System.out.println("No hubo dias de baja influencia.");
