@@ -15,18 +15,51 @@ public class Caso58 {
 
     System.out.println("\n===== Inicio del sistema de Nutricion infantil =====");
 
-    int[] marcas = new int[20];
-    int gramos = 0;
-    int marcaSuperaLimite = 0;
-    int marcaSaludable = 0; 
+            double[] azucar = new double[20];
 
+        double suma = 0;
 
-    for (int i = 0; i < marcas.length; i++) {
-      System.out.println("\nIngrese la marca del cereal " + (i + 1) + " : ");
-      marcas[i] = jm.nextInt();
+        // Para encontrar la marca más saludable (menor azúcar)
+        double menorAzucar;
+        int posMenor = 0;
 
+        // 2) Ingreso de datos
+        for (int i = 0; i < azucar.length; i++) {
+            System.out.print("Ingrese gramos de azúcar de la marca " + (i + 1) + ": ");
+            azucar[i] = jm.nextDouble();
 
-    }
+            suma += azucar[i];
 
+            // Inicializar menor en la primera vuelta
+            if (i == 0) {
+                menorAzucar = azucar[i];
+                posMenor = i;
+            } else {
+                if (azucar[i] < menorAzucar) {
+                    menorAzucar = azucar[i];
+                    posMenor = i;
+                }
+            }
+        }
+
+        // 3) Promedio
+        double promedio = suma / azucar.length;
+
+        // 4) Identificar marcas que superan el límite OMS (10g)
+        System.out.println("\nMarcas que superan los 10g de azúcar:");
+        for (int i = 0; i < azucar.length; i++) {
+            if (azucar[i] > 10) {
+                System.out.println("⚠ Marca " + (i + 1) + " con " + azucar[i] + " g");
+            }
+        }
+
+        // 5) Resultados finales
+        System.out.println("\nPromedio de azúcar: " + promedio + " g");
+        System.out.println("Marca más saludable: #" + (posMenor + 1) +
+                           " con " + menorAzucar + " g de azúcar");
+
+        System.out.println("\n===== Fin del sistema de Nutricion infantil =====");
+
+        jm.close();
   }
 }

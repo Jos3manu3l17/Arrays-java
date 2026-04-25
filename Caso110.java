@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class Caso110 {
+
+  public static void main(String[] args) {
+
+    Scanner jm = new Scanner(System.in);
+
+    // Caso 110. Nutrición en Albergues: Balance de Macronutrientes en Población Infantil Un centro de atención 
+    // integral para la primera infancia registra el aporte nutricional de los platos servidos a 30 niños durante 
+    // el almuerzo. La matriz de [30][3] almacena los gramos exactos de Carbohidratos, Grasas y Proteínas consumidos 
+    // por cada menor. El sistema debe: 
+    // 1. Calcular el total de kilocalorías por niño usando los factores de conversión 
+    // (4-9-4). 
+    // 2. Identificar a los niños cuyo consumo de proteína esté por debajo del mínimo requerido para su edad. 
+    // 3. Determinar el perfil nutricional promedio del grupo para ajustar el menú semanal, asegurando que la distribución 
+    // de macronutrientes sea la recomendada por las guías de salud pública.
+
+    System.out.println("\n===== Inicio del sistema de nutricion de albergues =====");
+
+            double[][] nutricion = new double[30][3];
+
+        double sumaCarb = 0;
+        double sumaGrasas = 0;
+        double sumaProteinas = 0;
+
+        int proteinaBaja = 0;
+
+        // Ingreso de datos
+        for (int i = 0; i < 30; i++) {
+            System.out.println("\nNiño #" + (i + 1));
+
+            System.out.print("Carbohidratos (g): ");
+            nutricion[i][0] = jm.nextDouble();
+
+            System.out.print("Grasas (g): ");
+            nutricion[i][1] = jm.nextDouble();
+
+            System.out.print("Proteinas (g): ");
+            nutricion[i][2] = jm.nextDouble();
+        }
+
+        // Procesamiento
+        for (int i = 0; i < 30; i++) {
+
+            double carb = nutricion[i][0];
+            double grasa = nutricion[i][1];
+            double prote = nutricion[i][2];
+
+            // Calorías por niño
+            double calorias = (carb * 4) + (grasa * 9) + (prote * 4);
+            System.out.println("Niño #" + (i + 1) + " consumió " + calorias + " kcal");
+
+            // Verificar proteína baja ej: mínimo 15g
+            if (prote < 15) {
+                System.out.println("⚠️ Proteína baja en niño #" + (i + 1));
+                proteinaBaja++;
+            }
+
+            // Acumular para promedios del grupo
+            sumaCarb += carb;
+            sumaGrasas += grasa;
+            sumaProteinas += prote;
+        }
+
+        // Promedios del grupo
+        double promCarb = sumaCarb / 30;
+        double promGrasas = sumaGrasas / 30;
+        double promProte = sumaProteinas / 30;
+
+        System.out.println("\n===== PERFIL NUTRICIONAL PROMEDIO =====");
+        System.out.println("Carbohidratos promedio: " + promCarb + " g");
+        System.out.println("Grasas promedio: " + promGrasas + " g");
+        System.out.println("Proteínas promedio: " + promProte + " g");
+
+        System.out.println("\nNiños con proteína baja: " + proteinaBaja);
+
+        jm.close();
+
+        System.out.println("===== Fin del sistema de nutricion de albergues");
+
+
+  }
+}
